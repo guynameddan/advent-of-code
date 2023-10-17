@@ -1,3 +1,5 @@
 # Lessons Learned
 * Transforming a buffer with UTF-8 encoding is not the same as using the
 `toString()` method
+ * When you transform a buffer to a string with UTF-8 encoding, you explicitly specify the encoding that should be used to interpret the bytes in the buffer as characters. This is important because different encodings can represent characters differently. For example, UTF-8 is a variable-width encoding, which means that some characters may be represented using multiple bytes. By specifying UTF-8 encoding, you ensure that the buffer is interpreted correctly.
+ * The toString() method on a buffer is a general method for converting a buffer into a string. By default, it assumes that the buffer contains binary data and interprets it as a binary string. It doesn't consider any specific character encoding. If the buffer contains text data with a character encoding other than binary, using toString() without specifying the encoding can lead to incorrect results.
