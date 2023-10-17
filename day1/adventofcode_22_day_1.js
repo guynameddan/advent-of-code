@@ -1,30 +1,24 @@
-// const fs = require('fs');
-
-// // let sum = 0;
-// let max = 0;
-
-// // fs.readFile('adventofcode.com_2022_day_1_input.txt', (err, inputD) => {
-// fs.readFile('test1.txt', (err, data) => {
-
-//     if (err) throw err;
-
-//     let sum = 0;
-//     sum = data.toString();
-
-//     console.log(sum);
-// })
-
-// // console.log(sum);
-// console.log("hello");
-
 const fs = require('fs');
 
 function readFileLines(filename) {
-    return fs.readFileSync(filename);
+    return fs.readFileSync(filename).toString().replace(/\r/g, "").split(/\n/).map(Number);
 }
 
+// test1.txt sums should be 48559 and 41560
 let arr = readFileLines('test1.txt');
-// console.log(arr.toString());
+
 console.log(arr);
-console.log(Number(arr));
-console.log(arr.length);
+
+let sumArr = [];
+let currSum = 0;
+
+for (let i=0; i<=arr.length; i++) {
+    if (arr[i] === 0 || i === arr.length) {
+        sumArr.push(currSum);
+        currSum = 0;
+    } else {
+        currSum += arr[i];
+    }
+}
+
+console.log(sumArr);
