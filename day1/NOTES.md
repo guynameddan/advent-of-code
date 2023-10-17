@@ -7,6 +7,8 @@
 * Didn't know txt files have both `\r` (carriage return) and `\n` (line feed).
 
 # Helpful Links
+* https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/
+* https://nodejs.org/api/fs.html#fsreadfilesyncpath-options
 * https://www.30secondsofcode.org/js/s/read-file-lines/
 * https://stackoverflow.com/questions/12747722/what-is-the-difference-between-a-line-feed-and-a-carriage-return
 * https://stackoverflow.com/questions/10031112/why-does-javascript-only-count-carriage-returns-as-one-character-when-it-is-two
