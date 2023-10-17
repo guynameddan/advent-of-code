@@ -1,25 +1,30 @@
+// const fs = require('fs');
+
+// // let sum = 0;
+// let max = 0;
+
+// // fs.readFile('adventofcode.com_2022_day_1_input.txt', (err, inputD) => {
+// fs.readFile('test1.txt', (err, data) => {
+
+//     if (err) throw err;
+
+//     let sum = 0;
+//     sum = data.toString();
+
+//     console.log(sum);
+// })
+
+// // console.log(sum);
+// console.log("hello");
+
 const fs = require('fs');
 
-let sum = 0;
-let max = 0;
+function readFileLines(filename) {
+    return fs.readFileSync(filename);
+}
 
-// fs.readFile('adventofcode.com_2022_day_1_input.txt', (err, inputD) => {
-fs.readFile('test1.txt', (err, inputD) => {
-
-    if (err) throw err;
-    
-    console.log(inputD.toString());
-    console.log(inputD.length);
-
-    // if inputD is a number add it to sum
-    // else compare the current sum to the max
-    // replace if greater than max
-
-    // Note: may need to use Math.
-
-    // if (inputD !== "") {
-    //     console.log("hello");
-    // } else {
-    //     return;
-    // }
-})
+let arr = readFileLines('test1.txt');
+// console.log(arr.toString());
+console.log(arr);
+console.log(Number(arr));
+console.log(arr.length);
