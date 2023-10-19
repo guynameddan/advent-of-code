@@ -5,18 +5,21 @@ const fs = require('fs');
 // separated by /n, and finally converted to integers.
 function readFileLinesToInt(filename) {
     // let calorieList = fs.readFileSync(filename).toString().replace(/\r/g, "").split(/\n/).map(Number);
-    return fs.readFileSync(filename).toString().replace(/\r/g, "").split(/\n/).map(Number);
+    console.log(fs.readFileSync(filename).toString().replace(/\r/g, "").split(/\n/));
+    return fs.readFileSync(filename).toString().replace(/\r/g, "").split(/\n/);
 }
 
 function areNumbers(val) {
+    console.log(typeof val === "number");
+    console.log(val);
     return typeof val === "number";
 }
 
 let arr = readFileLinesToInt('test2.txt');
 
-if (!arr.map(function(val) {return areNumbers(val);})) {
+if (arr.map(function(val) {return areNumbers(val);}) === false) {
     console.log("NaN. Please make sure all lines are numbers.");
-    return;
+    return; // need to figure out how to end instead
 }
 
 // A.map(function(a) {return doOpSingle2(a,theFlag);});
