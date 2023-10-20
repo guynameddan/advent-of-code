@@ -27,6 +27,8 @@ function areNumbers(arr) {
 
 let calorieList = readFileLinesToInt('input.txt');
 
+// TODO: HAVE TO MAKE SURE ALL EDGE CASES ARE COVERED.
+// LIKE NO FILE. I ONLY HAVE NUMBER VERIFICATION
 try {
     areNumbers(calorieList);
 } catch (e) {
