@@ -4,7 +4,25 @@ const fs = require('fs');
 // a buffer. Then strings have carriage return replaced, split into array
 // separated by /n, and finally converted to integers.
 function readFileLinesToInt(filename) {
-    return fs.readFileSync(filename).toString().replace(/\r/g, "").split(/\n/).map(Number);
+    return fs.readFileSync(filename).toString().replace(/\r/g, "").split(/\n/); //.map(Number);
+}
+
+// ^^^^^
+// removed map so another function could be made to check each entry and see if
+// blank line or '' exists.
+// new function should go through each element and check to see if Number(entry)
+// returns NaN or an int.
+//    if (int) continue
+//    else error NaN
+// should also check if each element is '' so it knows when to stop summing
+
+
+function isTxtFile(fileName) {
+    if (fileName.toLowerCase().endsWith('.txt')) {
+        return;
+    } else {
+        throw new Error("File isn't a txt file");
+    }
 }
 
 // verify each entry is a number
@@ -25,11 +43,15 @@ function areNumbers(arr) {
 // test output
 // let calorieList = readFileLinesToInt('test2.txt');
 
-let calorieList = readFileLinesToInt('input.txt');
+let fileName = 'test2.txt';
+let calorieList = readFileLinesToInt(fileName);
 
-// TODO: HAVE TO MAKE SURE ALL EDGE CASES ARE COVERED.
-// LIKE NO FILE. I ONLY HAVE NUMBER VERIFICATION
+console.log(calorieList);
+
+// TODO: HAVE TO MAKE SURE ALL EDGE CASES ARE COVERED i.e.
+// no file and 0 calorie snacks
 try {
+    isTxtFile(fileName);
     areNumbers(calorieList);
 } catch (e) {
     console.log(e);
