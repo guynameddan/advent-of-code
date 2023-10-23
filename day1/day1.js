@@ -16,6 +16,27 @@ function readFileLinesToInt(filename) {
 //    else error NaN
 // should also check if each element is '' so it knows when to stop summing
 
+function test(arr) {
+    let currNum = 0;
+    let currSum = 0;
+    let end = arr.length;
+    let sums = [];
+
+    for (let idx = 0; idx < end; idx++) {
+        currNum = Number(arr[idx]);
+
+        if (arr[idx] === "") {
+            sums.push(currSum);
+            currSum = 0;
+        } else if (isNaN(currNum)) {
+            throw new Error("1 or more lines NaN");
+        } else if (currNum < 0) {
+            throw new Error("Can't have negative calories");
+        } else {
+            currSum += currNum;
+        }
+    }
+}
 
 function isTxtFile(fileName) {
     if (fileName.toLowerCase().endsWith('.txt')) {
