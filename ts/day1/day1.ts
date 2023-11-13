@@ -3,7 +3,7 @@ import * as fs from 'fs'
 // const calories = fs.readFileSync('./test1.txt', 'utf-8');
 const calories = fs.readFileSync('./input.txt', 'utf-8');
 
-const calArr = calories.split('\r\n'); //.map(Number);
+const calArr = calories.split('\n').map(Number);
 let max = 0;
 let sum = 0;
 
@@ -20,5 +20,5 @@ function findMax(cals: number[]): number {
     return max;
 }
 
-// console.log(findMax(calArr));
-console.log(calArr);
+console.log(findMax(calArr));
+// console.log(calArr);
