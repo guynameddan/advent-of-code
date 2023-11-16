@@ -1,14 +1,29 @@
 import * as fs from 'fs'
 
-// const calories = fs.readFileSync('./test1.txt', 'utf-8');
-const calories = fs.readFileSync('./input.txt', 'utf-8');
+const calories: string = fs.readFileSync('./test3.txt', 'utf-8');
 
-let calArr: number[] = calories.split('\n').map(Number);
+// how do i write this in TS instead?
+// const calories = fs.readFileSync('./input.txt', 'utf-8');
+
+const calArr: ReadonlyArray<number> = calories.split('\n').map(Number);
 // calArr = calArr.split('\r').map(Number);
 
 let max: number = 0;
 let sum: number = 0;
 let top3: number[] = [];
+
+/**
+ *  write tests:
+ *      -Make sure each line in txt is a number
+ *      -How to handle zero calorie snacks?
+ *          -I don't think this is possible.
+ *      -Make sure multiple zeros in beginning can be handled
+ *      -How does TS handle errors?
+ *      -Make sure file format can be used. (What kinds of 
+ *      files can readFileSync read?)
+ *      -Make sure file has one number per line.
+ */
+
 
 function findMax(cals: number[]): number {
     for (let i = 0; i < cals.length; i++) {
@@ -23,7 +38,7 @@ function findMax(cals: number[]): number {
     return max;
 }
 
-function findTop3(cals: number[]): number[] {
+function findTop3(cals: ReadonlyArray<number>): number[] {
     for (let i = 0; i < cals.length; i++) {
         if (cals[i] === 0 || i === cals.length - 1) {
             top3.push(sum);
@@ -46,5 +61,6 @@ let top3Sum = ordered.reduce((sum,num) => sum + num);
 // console.log(findMax(calArr));
 // console.log(calArr);
 
-console.log(ordered);
+// console.log(typeof(calories));
+console.log(calArr);
 console.log(top3Sum);
