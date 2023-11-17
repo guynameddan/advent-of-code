@@ -1,29 +1,33 @@
 import * as fs from 'fs'
 
-const calories: string = fs.readFileSync('./test3.txt', 'utf-8');
+const calories: string = fs.readFileSync('./test1.txt', 'utf-8');
 
 // how do i write this in TS instead?
 // const calories = fs.readFileSync('./input.txt', 'utf-8');
 
-const calArr: ReadonlyArray<number> = calories.split('\n').map(Number);
+const calArr: ReadonlyArray<string> = calories.replace(/\r/g, "").split(/\n/); //.map(Number);
 // calArr = calArr.split('\r').map(Number);
+
+
+// check each line is a number
+function isNum(arr: number[]) {
+    for (let i = 0; i < arr.length; i++) {
+        if (isNaN(arr[i])) {
+            throw new Error("At least one line is NaN");
+        }
+    }
+
+    return arr;
+}
 
 let max: number = 0;
 let sum: number = 0;
 let top3: number[] = [];
 
 /**
- *  write tests:
- *      -Make sure each line in txt is a number
- *      -How to handle zero calorie snacks?
- *          -I don't think this is possible.
- *      -Make sure multiple zeros in beginning can be handled
- *      -How does TS handle errors?
- *      -Make sure file format can be used. (What kinds of 
- *      files can readFileSync read?)
- *      -Make sure file has one number per line.
+ *  To do:
+ *      -use vite/vitest to setup tests? if so, how? or just stick with unit tests?
  */
-
 
 function findMax(cals: number[]): number {
     for (let i = 0; i < cals.length; i++) {
@@ -38,29 +42,24 @@ function findMax(cals: number[]): number {
     return max;
 }
 
-function findTop3(cals: ReadonlyArray<number>): number[] {
+function findTop3(cals: ReadonlyArray<string>): number[] {
     for (let i = 0; i < cals.length; i++) {
-        if (cals[i] === 0 || i === cals.length - 1) {
+        if (cals[i] === "" || i === cals.length - 1) {
             top3.push(sum);
             sum = 0;
         } else {
-            sum += cals[i];
+            sum += Number(cals[i]);
         }
     }
 
     return top3;
 }
 
-top3 = findTop3(calArr);
 
-// may reconsider using sort() cuz of shallow copy
-let ordered = top3.sort((a, b) => b - a).slice(0,3);
 
-let top3Sum = ordered.reduce((sum,num) => sum + num);
+// top3 = findTop3(calArr);
 
-// console.log(findMax(calArr));
-// console.log(calArr);
+// // may reconsider using sort() cuz of shallow copy
+// let ordered = top3.sort((a, b) => b - a).slice(0,3);
 
-// console.log(typeof(calories));
-console.log(calArr);
-console.log(top3Sum);
+// let top3Sum = ordered.reduce((sum,num) => sum + num);
