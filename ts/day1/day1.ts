@@ -55,6 +55,12 @@ function findTop3(cals: ReadonlyArray<string>): number[] {
     return top3;
 }
 
+// try {
+//     isNum(arr);
+// } catch (error) {
+//     console.log(e);
+//     return;
+// }
 
 
 // top3 = findTop3(calArr);
